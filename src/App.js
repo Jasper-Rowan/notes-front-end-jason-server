@@ -55,7 +55,7 @@ import Note from './components/Note'
 
 const App = () => {
   const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState('')
+  const [newNote, setNewNote] = useState('Test')
   const [showAll, setShowAll] = useState(true)
 
   useEffect(() => {
@@ -67,7 +67,18 @@ const App = () => {
         setNotes(response.data)
       })
   }, [])
+
   console.log('render', notes.length, 'notes')
+
+  const handleNoteChange = (e) => {
+    console.log(e.target.value);
+    setNewNote(e.target.value);
+  }
+  
+  const addNote = (event) => {
+    event.preventDefault()
+    console.log('button clicked', event.target)
+  }
   
   return (
     <div>
@@ -77,6 +88,13 @@ const App = () => {
           <Note key={note.id} note={note} />
         )}
       </ul>
+      <form onSubmit={addNote}>
+        <input 
+          value={newNote}
+          onChange={handleNoteChange}
+         />
+        <button type="submit">save</button>
+      </form>   
     </div>
   )
 }
