@@ -23,6 +23,12 @@
  * 
  * npm install axios
  * 
+ * We use the axios.get() method to send a get request to
+ * our json server followed by a .then() callback function
+ * which registers a callback which will fire when the
+ * server sends a response. This is all done in Use Effect
+ * Hook, see below for reasoning.
+ * 
  * Use Effect Hook
  * The Effect Hook lets you perform side effects on function
  * components. Data fetching, setting up a subscription, and
@@ -46,18 +52,28 @@
  * specify how often the effect is run. If the second
  * parameter is an empty array [], then the effect is only
  * run along with the first render of the component.
+ * 
+ * Forms
+ * We added a form that allows the user to create new notes
+ * consisting of a input and submit button. We added a
+ * newNote state variable to store the value in the input
+ * field, this set up a relationship where the component
+ * took over the state of the form and the input became read
+ * only until we registered and onchange handler. See the
+ * forms section of the fullstack course to understand in
+ * more detail.
  */ 
 
-import { useState, useEffect } from 'react'
+import react from 'react'
 import axios from 'axios'
 import Note from './components/Note'
 
 const App = () => {
-  const [notes, setNotes] = useState([])
-  const [newNote, setNewNote] = useState('Test')
-  const [showAll, setShowAll] = useState(true)
+  const [notes, setNotes] = react.useState([])
+  const [newNote, setNewNote] = react.useState('Test')
+  const [showAll, setShowAll] = react.useState(true)
 
-  useEffect(() => {
+  react.useEffect(() => {
     console.log('effect')
     axios
       .get('http://localhost:3001/notes')
