@@ -86,11 +86,14 @@ const App = () => {
     axios
     .post('http://localhost:3001/notes', noteObject)
     .then(response => {
-      console.log(response)
+      setNotes(notes.concat(noteObject));
+      setNewNote('')
     })
   
-    setNotes(notes.concat(noteObject))
-    setNewNote('')
+  }
+
+  const toggleImportanceOf = (id) => {
+    console.log('importance of ' + id + ' needs to be toggled')
   }
 
   const notesToShow = showAll
@@ -102,7 +105,10 @@ const App = () => {
       <h1>Notes</h1>
       <ul>
         {notesToShow.map(note => 
-          <Note key={note.id} note={note} />
+          <Note 
+            key={note.id} 
+            note={note} 
+            toggleImportance={() => toggleImportanceOf(note.id)}/>
         )}
       </ul>
       <button onClick={() => setShowAll(!showAll)}>
