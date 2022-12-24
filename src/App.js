@@ -48,7 +48,6 @@
  * run along with the first render of the component.
  */ 
 
-
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from './components/Note'
@@ -83,6 +82,12 @@ const App = () => {
       important: Math.random() < 0.5,
       id: notes.length + 1,
     }
+
+    axios
+    .post('http://localhost:3001/notes', noteObject)
+    .then(response => {
+      console.log(response)
+    })
   
     setNotes(notes.concat(noteObject))
     setNewNote('')
