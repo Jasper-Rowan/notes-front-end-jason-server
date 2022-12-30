@@ -65,7 +65,6 @@
  */ 
 
 import react from 'react'
-import axios from 'axios'
 import Note from './components/Note'
 import noteService from './services/notes'
 
@@ -76,8 +75,8 @@ const App = () => {
 
   react.useEffect(() => {
     noteService.getAll()
-      .then(response => {
-        setNotes(response.data)
+      .then(notes => {
+        setNotes(notes)
       })
   }, [])
 
@@ -98,8 +97,8 @@ const App = () => {
     }
 
     noteService.create(noteObject)
-    .then(response => {
-      setNotes(notes.concat(noteObject));
+    .then(newNote => {
+      setNotes(notes.concat(newNote));
       setNewNote('')
     })
   
@@ -110,8 +109,8 @@ const App = () => {
     const changedNote = { ...note, important: !note.important }
   
     noteService.update(id, changedNote)
-    .then(response => {
-      setNotes(notes.map(n => n.id !== id ? n : response.data))
+    .then(updatedNote => {
+      setNotes(notes.map(n => n.id !== id ? n : updatedNote))
     })
   }
 
