@@ -6,10 +6,10 @@
  * data from a locally hosted server called json server.
  * 
  * json server 
- * can be installed golbally with:
+ * can be installed globally with:
  * npm install -g json-server, however a global install is
  * not necessary, usually you can just run it from the root
- * dir of yout project with the command:
+ * dir of your project with the command:
  * 
  * npx json-server --port 3001 --watch db.json
  * Note your db.json file will be created and you can fill
@@ -111,6 +111,12 @@ const App = () => {
     noteService.update(id, changedNote)
     .then(updatedNote => {
       setNotes(notes.map(n => n.id !== id ? n : updatedNote))
+    })
+    .catch(error => {
+      alert(
+        `the note '${note.content}' was already deleted from server, also heres the error: ${error}`
+      )
+      setNotes(notes.filter(n => n.id !== id))
     })
   }
 

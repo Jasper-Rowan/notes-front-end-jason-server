@@ -21,7 +21,7 @@
     {
       "content": "Test",
       "date": "2022-12-24T00:17:34.749Z",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
