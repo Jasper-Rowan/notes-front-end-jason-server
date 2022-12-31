@@ -1,4 +1,9 @@
-
+/**
+ * Please look at the doc string in App.js for more
+ * information on this project.
+ * 
+ * -Jasper Rowan
+ */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
